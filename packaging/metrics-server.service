@@ -1,0 +1,31 @@
+[Unit]
+Description=BorgesHQ Cross-platform Metrics HTTP API (C++)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# Optional: create a dedicated user and group first (see instructions below)
+User=metrics
+Group=metrics
+
+# Read overrides like PORT and EXTRA_ARGS from /etc/default/metrics-server if present
+EnvironmentFile=-/etc/default/metrics-server
+
+# Binary path assumes the default CMake install prefix (/usr/local)
+# PORT should be defined in the EnvironmentFile, e.g. PORT=8080
+ExecStart=/usr/local/bin/metrics_server --port $PORT $EXTRA_ARGS
+
+# Hardening (adjust if needed)
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+CapabilityBoundingSet=
+AmbientCapabilities=
+
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
