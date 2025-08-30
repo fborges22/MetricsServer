@@ -149,8 +149,8 @@ static PdhState init_pdh() {
     PdhState s{};
     if (PdhOpenQuery(NULL, 0, &s.query) != ERROR_SUCCESS) return s;
     // Use English counter names to avoid locale issues
-    if (PdhAddEnglishCounter(s.query, L"\\PhysicalDisk(_Total)\\Disk Reads/sec", 0, &s.reads) != ERROR_SUCCESS) return s;
-    if (PdhAddEnglishCounter(s.query, L"\\PhysicalDisk(_Total)\\Disk Writes/sec", 0, &s.writes) != ERROR_SUCCESS) return s;
+    if (PdhAddEnglishCounter(s.query, "\\PhysicalDisk(_Total)\\Disk Reads/sec", 0, &s.reads) != ERROR_SUCCESS) return s;
+    if (PdhAddEnglishCounter(s.query, "\\PhysicalDisk(_Total)\\Disk Writes/sec", 0, &s.writes) != ERROR_SUCCESS) return s;
     if (PdhCollectQueryData(s.query) != ERROR_SUCCESS) return s; // prime
     s.ok = true;
     return s;
