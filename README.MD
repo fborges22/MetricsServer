@@ -15,6 +15,7 @@ A lightweight cross-platform HTTP API server written in modern C++ 20 to expose 
 - Built-in minimal HTTP server (no external dependencies)
 - Portable build via **CMake**
 - Systemd service unit for Linux deployment
+- Packaged using **CPack** (DEB, RPM, TGZ, ZIP, NSIS)
 
 ## Build Instructions
 
